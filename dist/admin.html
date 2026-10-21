@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>シンセイ工業 管理者</title>
+  <!-- [2026-09-29] Googleでログイン用。_headers の Referrer-Policy: no-referrer のままだと、Googleのボタン(iframe)が
+       呼び出し元のドメインを確認できずに弾かれることがあるため、この画面だけ「ドメイン名だけ送る」にする（パスは送らない） -->
+  <meta name="referrer" content="strict-origin">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- [2026-06-17] @babel/standalone を v7.26.4 に固定。未固定(latest)だと v8 がJSX既定をautomatic runtime化し
+       import文を出力→「Cannot use import statement」で画面真っ白になるため。v7はclassic(React.createElement)既定。 -->
+  <script src="shared.js"></script>
+  <script src="ic_kanto.js"></script><!-- [2026-10-15] 関東の高速の出入口（交通費の推定用） -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#f97316">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="管理者">
+  <link rel="apple-touch-icon" href="/icon-192_v4.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    #root { min-height: 100vh; }
+    /* [2026-05-07] モーダル: スマホはボトムシート、PCは中央配置 */
+    .modal-overlay { align-items: flex-end; }
+    .modal-content { border-radius: 16px 16px 0 0; }
+    /* PC対応レスポンシブ */
+    @media (min-width: 768px) {
+      .admin-shell { max-width: 960px !important; }
+      .admin-header-tabs { gap: 6px !important; }
+      .admin-header-tabs button { min-width: 70px !important; font-size: 11px !important; padding: 8px 10px !important; }
+      .admin-grid-2col { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+      .admin-grid-3col { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 10px !important; }
+      .modal-overlay { align-items: center !important; }
+      .modal-content { border-radius: 16px !important; }
+    }
+    @media (min-width: 1200px) {
+      .admin-shell { max-width: 1200px !important; }
+      .admin-grid-3col { grid-template-columns: 1fr 1fr 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="/dist/admin.js?v=65a5a3afd1"></script>
+</body>
+</html>

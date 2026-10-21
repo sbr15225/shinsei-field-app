@@ -1,0 +1,182 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人工目安 試験</title>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script></head>
+<body style="background:#e5e7eb;margin:0;font-family:sans-serif"><div id="root"></div><div id="log" style="display:none"></div>
+<script>
+window.DB = [{"id":"wn-preset-memo","grp":"補足","category":"補足","sizeSpec":"","unit":"","notes":"","normal":null,"small":null,"large":null},{"id": "wn-preset-001", "grp": "配管保温", "category": "排水（ドレン含む）・露出", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-002", "grp": "配管保温", "category": "排水（ドレン含む）・露出", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-003", "grp": "配管保温", "category": "排水（ドレン含む）・露出", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-004", "grp": "配管保温", "category": "排水（ドレン含む）・隠蔽", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-005", "grp": "配管保温", "category": "排水（ドレン含む）・隠蔽", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-006", "grp": "配管保温", "category": "排水（ドレン含む）・隠蔽", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-007", "grp": "配管保温", "category": "衛生・露出", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-008", "grp": "配管保温", "category": "衛生・露出", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-009", "grp": "配管保温", "category": "衛生・露出", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-010", "grp": "配管保温", "category": "衛生・隠蔽", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-011", "grp": "配管保温", "category": "衛生・隠蔽", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-012", "grp": "配管保温", "category": "衛生・隠蔽", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-013", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・露出", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-014", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・露出", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-015", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・露出", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-016", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・隠蔽", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-017", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・隠蔽", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-018", "grp": "配管保温", "category": "冷温水・蒸気（役物込み）・隠蔽", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-019", "grp": "役物（バルブ等）", "category": "役物", "sizeSpec": "50A以下", "unit": "個", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-020", "grp": "役物（バルブ等）", "category": "役物", "sizeSpec": "65〜100A", "unit": "個", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-021", "grp": "役物（バルブ等）", "category": "役物", "sizeSpec": "125〜200A", "unit": "個", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-022", "grp": "スパイラルダクト", "category": "GW", "sizeSpec": "150φ以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-023", "grp": "スパイラルダクト", "category": "GW", "sizeSpec": "200φ以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-024", "grp": "スパイラルダクト", "category": "RW 50mm", "sizeSpec": "150φ以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-025", "grp": "スパイラルダクト", "category": "RW 50mm", "sizeSpec": "200φ以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-026", "grp": "角ダクト", "category": "GW", "sizeSpec": "500角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-027", "grp": "角ダクト", "category": "GW", "sizeSpec": "900角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-028", "grp": "角ダクト", "category": "GW", "sizeSpec": "1200角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-029", "grp": "角ダクト", "category": "RW 50mm", "sizeSpec": "500角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-030", "grp": "角ダクト", "category": "RW 50mm", "sizeSpec": "900角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-031", "grp": "角ダクト", "category": "RW 50mm", "sizeSpec": "1200角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-032", "grp": "角ダクト", "category": "グラス板", "sizeSpec": "500角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-033", "grp": "角ダクト", "category": "グラス板", "sizeSpec": "900角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-034", "grp": "角ダクト", "category": "グラス板", "sizeSpec": "1200角以下", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-035", "grp": "ウェーブロール", "category": "ウェーブロール", "sizeSpec": "25mm", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-036", "grp": "ウェーブロール", "category": "ウェーブロール", "sizeSpec": "50mm", "unit": "㎡", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-037", "grp": "煙道", "category": "煙道", "sizeSpec": "400φ以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-038", "grp": "煙道", "category": "煙道", "sizeSpec": "400〜800φ", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-039", "grp": "煙道", "category": "煙道", "sizeSpec": "800φ超", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-040", "grp": "ラッキング", "category": "冷媒管", "sizeSpec": "8番以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-041", "grp": "ラッキング", "category": "冷媒管", "sizeSpec": "8番超", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-042", "grp": "ラッキング", "category": "シチロール下付け・衛生", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-043", "grp": "ラッキング", "category": "シチロール下付け・衛生", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-044", "grp": "ラッキング", "category": "シチロール下付け・衛生", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-045", "grp": "ラッキング", "category": "シチロール下付け・冷温水", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-046", "grp": "ラッキング", "category": "シチロール下付け・冷温水", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-047", "grp": "ラッキング", "category": "シチロール下付け・冷温水", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-048", "grp": "ラッキング", "category": "GW下付け・衛生", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-049", "grp": "ラッキング", "category": "GW下付け・衛生", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-050", "grp": "ラッキング", "category": "GW下付け・衛生", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-051", "grp": "ラッキング", "category": "GW下付け・冷温水", "sizeSpec": "20〜80A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-052", "grp": "ラッキング", "category": "GW下付け・冷温水", "sizeSpec": "100〜200A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-053", "grp": "ラッキング", "category": "GW下付け・冷温水", "sizeSpec": "250A以上", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-054", "grp": "ファインカバー", "category": "ファインカバー", "sizeSpec": "80A相当以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-055", "grp": "ファインカバー", "category": "ファインカバー", "sizeSpec": "80A相当超", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-056", "grp": "ファンコイル", "category": "改修", "sizeSpec": "", "unit": "台", "notes": "", "easy": null, "normal": 4.2, "hard": null}, {"id": "wn-preset-057", "grp": "ファンコイル", "category": "新築", "sizeSpec": "", "unit": "台", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-058", "grp": "鉛処理 2mm", "category": "配管", "sizeSpec": "50A", "unit": "ヶ所", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-059", "grp": "鉛処理 2mm", "category": "配管", "sizeSpec": "100A", "unit": "ヶ所", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-060", "grp": "鉛処理 2mm", "category": "配管", "sizeSpec": "150A", "unit": "ヶ所", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-061", "grp": "鉛処理 2mm", "category": "ダクト", "sizeSpec": "250φ", "unit": "ヶ所", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-062", "grp": "鉛処理 2mm", "category": "ダクト", "sizeSpec": "600角", "unit": "ヶ所", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-063", "grp": "その他", "category": "遮音・排水", "sizeSpec": "100A", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-064", "grp": "その他", "category": "アーマフレックス・銅管", "sizeSpec": "40A以下", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-065", "grp": "その他", "category": "ピット チューブ・足立区仕様", "sizeSpec": "", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-066", "grp": "その他", "category": "ピット チューブ・八潮市仕様", "sizeSpec": "", "unit": "m", "notes": "", "normal": null, "small": null, "large": null}, {"id": "wn-preset-067", "grp": "その他", "category": "発生器（神奈川総合の大きさ）", "sizeSpec": "", "unit": "人工/台", "notes": "いまの目安 8〜10人工・板金130万＋α", "normal": null, "small": null, "large": null}, {"id": "wn-preset-068", "grp": "補正", "category": "天井内の作業（露出の何分の1か）", "sizeSpec": "", "unit": "分の1", "notes": "例：2なら露出の半分しか進まない", "normal": null, "small": null, "large": null}];
+window.SAVES = []; window.FAIL_NEXT = false; let _err="";
+function getLastApiError(){return _err;}
+async function loadWorkloadInput(){ return JSON.parse(JSON.stringify(window.DB)); }
+async function saveWorkloadInput(items){
+  if (window.FAIL_NEXT) { window.FAIL_NEXT=false; _err="試験用の通信エラー"; return null; }
+  const okNum=v=>v===null||(typeof v==="number"&&isFinite(v)&&v>=0&&v<=10000); const okPct=v=>v===undefined||v===null||(typeof v==="number"&&v>=-100&&v<=500);
+  for (const it of items) if(!okNum(it.normal)||!okPct(it.small)||!okPct(it.large)) { _err="値が正しくない行があります"; return null; }
+  window.SAVES.push(JSON.parse(JSON.stringify(items)));
+  items.forEach(it=>{ const r=window.DB.find(x=>x.id===it.id); r.normal=it.normal; r.small=it.small; r.large=it.large; if(typeof it.memo==="string") r.notes=it.memo; });
+  return {ok:true,saved:items.length};
+}
+</script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+function parseNinkuNum(s) {
+  const t = String(s ?? "").trim().replace(/[０-９．]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+  if (t === "") return { ok: true, v: null };
+  if (!/^\d+(\.\d+)?$/.test(t)) return { ok: false };
+  const v = Number(t);
+  return v <= 10000 ? { ok: true, v } : { ok: false };
+}
+// [2026-10-09 v241] ％（小さいサイズ・大きいサイズで、まん中より何%進むか）。+20 / −30 / 20% など。−100〜500
+function parseNinkuPct(s) {
+  const t = String(s ?? "").trim()
+    .replace(/[０-９．]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+    .replace(/[−－ー―‐]/g, "-").replace(/[＋]/g, "+").replace(/[%％]/g, "").replace(/\s/g, "");
+  if (t === "") return { ok: true, v: null };
+  if (!/^[+-]?\d+(\.\d+)?$/.test(t)) return { ok: false };
+  const v = Number(t);
+  return (v >= -100 && v <= 500) ? { ok: true, v } : { ok: false };
+}
+// サイズの幅があるか（幅がある行だけ％を聞く）と、まん中のサイズの目安
+function ninkuHasRange(size) { return /〜|以下|以上|超/.test(size || ""); }
+const NINKU_MID = { "20〜80A":"50A", "100〜200A":"150A", "250A以上":"300A", "50A以下":"40A", "65〜100A":"80A", "125〜200A":"150A",
+  "150φ以下":"150φ", "200φ以上":"250φ", "500角以下":"400角", "900角以下":"700角", "1200角以下":"1000角",
+  "400φ以下":"300φ", "400〜800φ":"600φ", "800φ超":"900φ", "8番以下":"6番", "8番超":"10番",
+  "80A相当以下":"50A相当", "80A相当超":"100A相当", "40A以下":"25A" };
+function WorkloadInput({ showToast }) {
+  const [rows, setRows] = useState(null);      // null=読み込み中 / [] / 配列
+  const [err, setErr] = useState("");
+  const [vals, setVals] = useState({});        // id -> {normal, small, large}（入力中の文字）
+  const [dirty, setDirty] = useState({});      // grp -> true（未保存あり）
+  const [savingGrp, setSavingGrp] = useState("");
+  const [savedMsg, setSavedMsg] = useState({}); // grp -> "✓ 10/9 12:00 保存"
+  const [memo, setMemo] = useState("");          // [2026-10-09] 最後の補足欄（wn-preset-memo の notes）
+  const toStr = v => (v === null || v === undefined) ? "" : String(v);
+
+  const load = async () => {
+    setErr("");
+    const r = await loadWorkloadInput();
+    if (!r) { setErr(getLastApiError() || "読み込みに失敗しました"); setRows([]); return; }
+    setRows(r);
+    const v = {};
+    r.forEach(x => { v[x.id] = { normal: toStr(x.normal), small: toStr(x.small), large: toStr(x.large) }; });
+    setVals(v); setDirty({});
+    setMemo((r.find(x => x.id === "wn-preset-memo") || {}).notes || "");
+  };
+  useEffect(() => { load(); }, []);
+
+  if (rows === null) return <div style={{padding:24,textAlign:"center",color:"#6b7280",fontSize:13}}>読み込み中...</div>;
+  if (err) return (
+    <div style={{padding:24,textAlign:"center",color:"#ef4444",fontSize:13}}>
+      {err}<br/>
+      <button onClick={load} style={{marginTop:12,padding:"8px 18px",borderRadius:8,border:"1px solid #d1d5db",background:"#fff",fontSize:13}}>もう一度読み込む</button>
+    </div>
+  );
+
+  const groups = [];
+  const memoRow = rows.find(x => x.id === "wn-preset-memo");
+  rows.filter(x => x.id !== "wn-preset-memo").forEach(x => { let g = groups.find(g => g.name === x.grp); if (!g) { g = { name: x.grp, items: [] }; groups.push(g); } g.items.push(x); });
+
+  const setVal = (row, key, s) => {
+    setVals(p => ({ ...p, [row.id]: { ...p[row.id], [key]: s } }));
+    setDirty(p => ({ ...p, [row.grp]: true }));
+  };
+  const badCell = (id, key) => !(key === "normal" ? parseNinkuNum(vals[id]?.[key]) : parseNinkuPct(vals[id]?.[key])).ok;
+
+  const saveGroup = async (g) => {
+    const items = [];
+    for (const x of g.items) {
+      const n = parseNinkuNum(vals[x.id]?.normal), sm = parseNinkuPct(vals[x.id]?.small), lg = parseNinkuPct(vals[x.id]?.large);
+      if (!n.ok || !sm.ok || !lg.ok) { showToast("赤い欄を直してください（数量は 30・4.5、％は +20・−30 など）"); return; }
+      items.push({ id: x.id, normal: n.v, small: sm.v, large: lg.v });
+    }
+    setSavingGrp(g.name);
+    const res = await saveWorkloadInput(items);
+    setSavingGrp("");
+    if (!res?.ok) { showToast("⚠ 保存できませんでした：" + (getLastApiError() || "通信を確認してください")); return; }
+    setDirty(p => ({ ...p, [g.name]: false }));
+    const d = new Date();
+    setSavedMsg(p => ({ ...p, [g.name]: `✓ ${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,"0")} 保存（${res.saved}件）` }));
+    showToast(`✓ ${g.name} ${res.saved}件を保存しました`);
+  };
+
+  const saveMemo = async () => {
+    if (memo.length > 2000) { showToast("補足は2000文字までにしてください"); return; }
+    setSavingGrp("補足");
+    const res = await saveWorkloadInput([{ id: "wn-preset-memo", normal: null, small: null, large: null, memo }]);
+    setSavingGrp("");
+    if (!res?.ok) { showToast("⚠ 保存できませんでした：" + (getLastApiError() || "通信を確認してください")); return; }
+    setDirty(p => ({ ...p, "補足": false }));
+    const d = new Date();
+    setSavedMsg(p => ({ ...p, "補足": `✓ ${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,"0")} 保存` }));
+    showToast("✓ 補足を保存しました");
+  };
+
+  const anyDirty = Object.values(dirty).some(Boolean);
+  const IN = bad => ({ width:"100%", boxSizing:"border-box", padding:"8px 4px", fontSize:16, textAlign:"center",
+    border:`1px solid ${bad?"#ef4444":"#d1d5db"}`, borderRadius:6, background: bad?"#fef2f2":"#fffbeb" });
+  return (
+    <div style={{padding:"12px 12px 80px"}}>
+      <div style={{background:"#fff",borderRadius:10,padding:"12px 14px",marginBottom:12,fontSize:13,lineHeight:1.8,color:"#374151"}}>
+        サイズの<b>まん中くらい</b>（例：20〜80Aなら50A）で、<b>1人で1日やったら、どれくらい進むか</b>を入れてください。<br/>
+        <b>小さいサイズ・大きいサイズ</b>は、まん中より<b>何%進むか</b>を入れてください（多く進むなら＋、進まないなら−。例：+20、−30）。<br/>
+        <b>区分ごとに一番下の「保存」を押してください。</b>押さないと残りません。
+      </div>
+      {anyDirty && <div style={{background:"#fef3c7",color:"#92400e",borderRadius:8,padding:"8px 12px",marginBottom:12,fontSize:12,fontWeight:700}}>
+        未保存の区分があります：{[...groups.map(g=>g.name),"補足"].filter(n=>dirty[n]).join("、")}
+      </div>}
+      {groups.map(g => (
+        <div key={g.name} style={{background:"#fff",borderRadius:10,padding:"12px 10px",marginBottom:14,border: dirty[g.name] ? "2px solid #f59e0b" : "1px solid #e5e7eb"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+            <div style={{fontSize:15,fontWeight:700,color:"#111827"}}>{g.name}</div>
+            <div style={{fontSize:11,color: dirty[g.name] ? "#d97706" : "#059669"}}>{dirty[g.name] ? "未保存" : (savedMsg[g.name] || "")}</div>
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 58px 58px 58px",gap:6,fontSize:10,color:"#6b7280",marginBottom:4}}>
+            <div></div><div style={{textAlign:"center"}}>まん中の<br/>数量</div><div style={{textAlign:"center"}}>小さい<br/>サイズ%</div><div style={{textAlign:"center"}}>大きい<br/>サイズ%</div>
+          </div>
+          {g.items.map(x => (
+            <div key={x.id} style={{display:"grid",gridTemplateColumns:"1fr 58px 58px 58px",gap:6,alignItems:"center",padding:"6px 0",borderTop:"1px solid #f3f4f6"}}>
+              <div style={{fontSize:12,color:"#111827",lineHeight:1.4}}>
+                {x.category}{x.sizeSpec ? <span style={{fontWeight:700}}>　{x.sizeSpec}</span> : null}
+                <div style={{fontSize:10,color:"#6b7280"}}>単位：{x.unit}{NINKU_MID[x.sizeSpec] ? `　まん中：${NINKU_MID[x.sizeSpec]}` : ""}{x.notes ? `　${x.notes}` : ""}</div>
+              </div>
+              {["normal","small","large"].map(k => (k !== "normal" && !ninkuHasRange(x.sizeSpec))
+                ? <div key={k} style={{textAlign:"center",color:"#d1d5db",fontSize:12}}>—</div>
+                : <input key={k} type="text" inputMode={k === "normal" ? "decimal" : "text"} value={vals[x.id]?.[k] ?? ""}
+                    placeholder={k === "normal" ? "" : "±%"}
+                    onChange={e=>setVal(x, k, e.target.value)} style={IN(badCell(x.id,k))}/>
+              )}
+            </div>
+          ))}
+          <button disabled={!!savingGrp} onClick={()=>saveGroup(g)}
+            style={{marginTop:10,width:"100%",padding:"12px",borderRadius:8,border:"none",fontSize:14,fontWeight:700,
+              background: savingGrp===g.name ? "#9ca3af" : (dirty[g.name] ? "#f59e0b" : "#10b981"), color:"#fff"}}>
+            {savingGrp===g.name ? "保存中..." : `「${g.name}」を保存`}
+          </button>
+        </div>
+      ))}
+      {memoRow && (
+        <div style={{background:"#fff",borderRadius:10,padding:"12px 10px",marginBottom:14,border: dirty["補足"] ? "2px solid #f59e0b" : "1px solid #e5e7eb"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+            <div style={{fontSize:15,fontWeight:700,color:"#111827"}}>補足</div>
+            <div style={{fontSize:11,color: dirty["補足"] ? "#d97706" : "#059669"}}>{dirty["補足"] ? "未保存" : (savedMsg["補足"] || "")}</div>
+          </div>
+          <div style={{fontSize:12,color:"#6b7280",marginBottom:6}}>表にない工事や、気づいたことを自由に書いてください。</div>
+          <textarea value={memo} onChange={e=>{ setMemo(e.target.value); setDirty(p=>({ ...p, "補足": true })); }} rows={6}
+            style={{width:"100%",boxSizing:"border-box",padding:"10px",fontSize:16,lineHeight:1.6,border:"1px solid #d1d5db",borderRadius:6,background:"#fffbeb",fontFamily:"inherit"}}/>
+          <button disabled={!!savingGrp} onClick={saveMemo}
+            style={{marginTop:10,width:"100%",padding:"12px",borderRadius:8,border:"none",fontSize:14,fontWeight:700,
+              background: savingGrp==="補足" ? "#9ca3af" : (dirty["補足"] ? "#f59e0b" : "#10b981"), color:"#fff"}}>
+            {savingGrp==="補足" ? "保存中..." : "「補足」を保存"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+function App(){ const [t,setT]=useState(null); const showToast=m=>{setT(m); window.LAST_TOAST=m; setTimeout(()=>setT(null),2400);};
+  return <div style={{maxWidth:420,margin:"0 auto"}}><WorkloadInput showToast={showToast}/>{t&&<div id="toast" style={{position:"fixed",bottom:20,left:10,right:10,background:"#111",color:"#fff",padding:10,borderRadius:8}}>{t}</div>}</div>; }
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>

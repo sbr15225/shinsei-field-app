@@ -1,0 +1,13 @@
+{
+  "name": "shinsei-field-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "シンセイ工業 現場管理アプリ（PWA）",
+  "scripts": {
+    "build": "npm run build:user",
+    "build:user": "esbuild src/user.jsx --jsx-factory=React.createElement --jsx-fragment=React.Fragment --loader:.jsx=jsx --target=es2018 --outfile=dist/user.js --log-level=warning"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

@@ -1,0 +1,33 @@
+# Node.js (esbuild build tool)
+node_modules/
+
+# Local tool folders
+.netlify/
+.wrangler/
+.claude/
+supabase/.temp/
+
+# Manual backups (kept on the PC only)
+_backup/
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Work rules / internal PDFs (kept on the PC only)
+kisoku.pdf
+ikukai.pdf
+public/kisoku.pdf
+public/ikukai.pdf
+
+# One-off data fixes on individual staff records (kept on the PC only)
+supabase/migrations/035_*
+supabase/migrations/037_*
+supabase/migrations/046_*
+supabase/migrations/047_*
+supabase/migrations/052_*
+supabase/migrations/056_*
+supabase/migrations/087_*
+supabase/migrations/088_*
