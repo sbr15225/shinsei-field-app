@@ -256,13 +256,17 @@ function FinBars({ rows, max, color, lines = [] }) {
 }
 
 // [2026-10-15] 出面表：日付ごとに、どの現場に誰が行ったか（打刻から自動）。🚗社用車・🚙自家用・🚃電車は出勤時の通勤方法
+// [2026-10-22] 25日締め（出勤簿と同じ）："2026-03" なら 2/26〜3/25。今日が26日以降なら翌月度を最初に出す
 function DailySiteTable({ clockLogs, projects }) {
-  const now = new Date();
-  const [ym, setYm] = useState(`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}`);
+  const pad2 = n => String(n).padStart(2,"0");
+  const [ym, setYm] = useState(() => { const n = new Date(); const t = new Date(n.getFullYear(), n.getMonth() + (n.getDate() >= 26 ? 1 : 0), 1); return `${t.getFullYear()}-${pad2(t.getMonth()+1)}`; });
   const [y, m] = ym.split("-").map(Number);
-  const days = new Date(y, m, 0).getDate();
+  const dates = [];
+  for (let d = new Date(y, m-2, 26); d <= new Date(y, m-1, 25); d.setDate(d.getDate()+1)) dates.push(new Date(d));
+  const dstr = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+  const dset = new Set(dates.map(dstr));
   const COMMUTE = { company_car:"🚐", company_car_shared:"👥", own_car:"🚗", train:"🚃" };   // 出勤時の通勤方法（社用車＝運転・相乗り＝同乗）
-  const logs = clockLogs.filter(l => dateStrJST(l.clockIn).startsWith(ym));
+  const logs = clockLogs.filter(l => dset.has(dateStrJST(l.clockIn)));
   const pids = [...new Set(logs.map(l => l.projectId))];
   const pname = id => (projects.find(p => p.id === id) || {}).name || "（削除された現場）";
   pids.sort((a, b) => logs.filter(l => l.projectId === b).length - logs.filter(l => l.projectId === a).length);
@@ -271,7 +275,7 @@ function DailySiteTable({ clockLogs, projects }) {
     for (const l of logs) if (l.projectId === pid && dateStrJST(l.clockIn) === date && !seen.has(l.userId)) seen.set(l.userId, l);
     return [...seen.values()];
   };
-  const shift = d => { const t = new Date(y, m - 1 + d, 1); setYm(`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}`); };
+  const shift = d => { const t = new Date(y, m - 1 + d, 1); setYm(`${t.getFullYear()}-${pad2(t.getMonth()+1)}`); };
   const W = ["日","月","火","水","木","金","土"];
   const th = { position:"sticky", top:0, background:"#f3f4f6", border:"1px solid #d1d5db", padding:"6px 8px", fontSize:11, whiteSpace:"nowrap", zIndex:1 };
   const td = { border:"1px solid #e5e7eb", padding:"4px 6px", fontSize:11, verticalAlign:"top", minWidth:90 };
@@ -279,7 +283,7 @@ function DailySiteTable({ clockLogs, projects }) {
     <div style={{padding:12}}>
       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
         <button onClick={()=>shift(-1)} style={{padding:"4px 10px"}}>◀</button>
-        <div style={{fontSize:15,fontWeight:700}}>{y}年{m}月の出面表</div>
+        <div style={{fontSize:15,fontWeight:700}}>{y}年{m}月度の出面表<span style={{fontSize:11,fontWeight:400,color:"#6b7280",marginLeft:6}}>{dates[0].getMonth()+1}/26〜{m}/25</span></div>
         <button onClick={()=>shift(1)} style={{padding:"4px 10px"}}>▶</button>
         <div style={{fontSize:10,color:"#6b7280",marginLeft:8}}>🚐社用車（運転） 👥相乗り 🚗自車 🚃電車（出勤時の通勤方法）</div>
       </div>
@@ -288,15 +292,16 @@ function DailySiteTable({ clockLogs, projects }) {
         <table style={{borderCollapse:"collapse",width:"100%"}}>
           <thead><tr><th style={{...th,left:0,zIndex:2}}>日付</th>{pids.map(pid=><th key={pid} style={th}>{pname(pid)}</th>)}</tr></thead>
           <tbody>
-            {Array.from({length:days},(_,i)=>{
-              const date = `${ym}-${String(i+1).padStart(2,"0")}`;
-              const wd = new Date(y, m-1, i+1).getDay();
+            {dates.map(dt=>{
+              const date = dstr(dt);
+              const wd = dt.getDay();
+              const label = `${dt.getMonth()+1}/${dt.getDate()}`;
               const cells = pids.map(pid => cell(date, pid));
               if (cells.every(c => c.length === 0)) return (
-                <tr key={date}><td style={{...td,position:"sticky",left:0,background:"#fafafa",color:wd===0?"#ef4444":wd===6?"#2563eb":"#9ca3af"}}>{i+1}（{W[wd]}）</td>{pids.map(pid=><td key={pid} style={{...td,background:"#fafafa"}}/>)}</tr>);
+                <tr key={date}><td style={{...td,position:"sticky",left:0,background:"#fafafa",color:wd===0?"#ef4444":wd===6?"#2563eb":"#9ca3af"}}>{label}（{W[wd]}）</td>{pids.map(pid=><td key={pid} style={{...td,background:"#fafafa"}}/>)}</tr>);
               return (
                 <tr key={date}>
-                  <td style={{...td,position:"sticky",left:0,background:"#fff",fontWeight:700,color:wd===0?"#ef4444":wd===6?"#2563eb":"#111827"}}>{i+1}（{W[wd]}）</td>
+                  <td style={{...td,position:"sticky",left:0,background:"#fff",fontWeight:700,color:wd===0?"#ef4444":wd===6?"#2563eb":"#111827"}}>{label}（{W[wd]}）</td>
                   {cells.map((c,k)=><td key={pids[k]} style={td}>{c.map(l=><div key={l.userId}>{COMMUTE[l.commuteMethod]||""}{l.userName}</div>)}</td>)}
                 </tr>);
             })}
@@ -304,7 +309,7 @@ function DailySiteTable({ clockLogs, projects }) {
               <td style={{...td,position:"sticky",left:0,background:"#f3f4f6",fontWeight:700}}>のべ人数</td>
               {pids.map(pid=>{
                 let n = 0;
-                for (let i=1;i<=days;i++) n += cell(`${ym}-${String(i).padStart(2,"0")}`, pid).length;
+                for (const dt of dates) n += cell(dstr(dt), pid).length;
                 return <td key={pid} style={{...td,background:"#f3f4f6",fontWeight:700}}>{n}人</td>;
               })}
             </tr>
